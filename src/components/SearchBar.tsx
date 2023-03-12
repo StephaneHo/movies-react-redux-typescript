@@ -1,30 +1,30 @@
-import { useState, useRef } from "react"
+import { useState, useRef } from "react";
 //! Icons
-import { MdClose } from "react-icons/md"
+import { MdClose } from "react-icons/md";
 //! Types
-import type { DataType } from "./utils"
+import type { DataType } from "./utils";
 //! Styles
-import { Wrapper, DataResult } from "./SearchBar.styles"
+import { Wrapper, DataResult } from "./SearchBar.styles";
 
-interface Props{
-  handleFilter: any,
-  clearInput: any
-  wordEntered: any,
-  inputRef: any
+interface Props {
+  handleFilter: any;
+  clearInput: any;
+  wordEntered: any;
+  inputRef: any;
 }
 
 const SearchBar = ({
-  handleFilter, clearInput, wordEntered, inputRef
+  handleFilter,
+  clearInput,
+  wordEntered,
+  inputRef,
 }: Props) => {
-
-
-
   return (
     <Wrapper>
       <div className="searchInputs">
         <input
           type="text"
-          placeholder="Enter a Book Name..."
+          placeholder="Enter the name of a movie..."
           value={wordEntered}
           onChange={handleFilter}
           ref={inputRef}
@@ -36,7 +36,7 @@ const SearchBar = ({
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export { SearchBar }
+export { SearchBar };
