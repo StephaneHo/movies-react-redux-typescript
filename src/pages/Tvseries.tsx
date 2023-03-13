@@ -15,7 +15,7 @@ import {
 import { searchTvserie } from "../store/apis/tvserieSlice";
 import { IMAGE_BASE_URL } from "../utils/constants";
 import { Title } from "../components/Title";
-import { ErrorMessage } from "../components/Error";
+import { ErrorMessage } from "../components/ErrorMessage";
 import { Item } from "../components/Item";
 
 export const Tvseries = () => {

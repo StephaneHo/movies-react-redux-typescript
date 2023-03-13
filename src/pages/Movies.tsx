@@ -10,6 +10,7 @@ import ImageList from "@mui/material/ImageList";
 import { SearchBar } from "../components/SearchBar";
 import { Title } from "../components/Title";
 import { Item } from "../components/Item";
+import { ErrorMessage } from "../components/ErrorMessage";
 
 export const Movies = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -44,7 +45,7 @@ export const Movies = () => {
   if (isLoading || isMovieSearchLoading) {
     content = <Skeleton />;
   } else if (isError || isMovieSearchError) {
-    content = <div>Error loading albums.</div>;
+    content = <ErrorMessage message="error loading the movies" />;
   } else {
     let results =
       movieSearch === "" ? data.results : searchMovieResults.results;
