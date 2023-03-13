@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { useFetchMoviesQuery } from "./../app/store";
-import Skeleton from "./../components/Skeleton";
+import Skeleton from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovie } from "./../store/apis/movieSlice";
 import { useSearchMovieByTitleQuery } from "../store/apis/moviesApi";

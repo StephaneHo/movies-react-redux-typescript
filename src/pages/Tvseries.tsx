@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
-import { useFetchMoviesQuery } from "../app/store";
 import Skeleton from "../components/Skeleton";
 import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,16 +58,19 @@ export const Tvseries = () => {
         : searchTvserieResults.results.length > 1 &&
           searchTvserieResults.results.map((tvserie: any) => {
             const image = IMAGE_BASE_URL + tvserie.backdrop_path;
+            const id = tvserie.id;
             return (
-              <ImageListItem key={tvserie.id}>
-                <img
-                  src={`${image}?w=100&fit=crop&auto=format`}
-                  srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-                  alt={tvserie.name}
-                  loading="lazy"
-                />
-                <ImageListItemBar title={tvserie.name} position="below" />
-              </ImageListItem>
+              <Link to={`/tvseries/${id}`}>
+                <ImageListItem key={tvserie.id}>
+                  <img
+                    src={`${image}?w=100&fit=crop&auto=format`}
+                    srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
+                    alt={tvserie.name}
+                    loading="lazy"
+                  />
+                  <ImageListItemBar title={tvserie.name} position="below" />
+                </ImageListItem>
+              </Link>
             );
           });
   }
