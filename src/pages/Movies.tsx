@@ -65,16 +65,20 @@ export const Movies = () => {
           searchMovieResults.results.map((movie: any) => {
             const image =
               "https://image.tmdb.org/t/p/original/" + movie.backdrop_path;
+            const id = movie.id;
             return (
-              <ImageListItem key={movie.id}>
-                <img
-                  src={`${image}?w=100&fit=crop&auto=format`}
-                  srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-                  alt={movie.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar title={movie.title} position="below" />
-              </ImageListItem>
+              <Link to={`/${id}`}>
+                <ImageListItem key={movie.id}>
+                  <img
+                    src={`${image}?w=100&fit=crop&auto=format`}
+                    srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
+                    alt={movie.title}
+                    loading="lazy"
+                  />
+
+                  <ImageListItemBar title={movie.title} position="below" />
+                </ImageListItem>
+              </Link>
             );
           });
   }
