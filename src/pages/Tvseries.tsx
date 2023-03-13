@@ -13,6 +13,7 @@ import {
   useSearchTvserieByTitleQuery,
 } from "../store/apis/tvseriesApi";
 import { searchTvserie } from "../store/apis/tvserieSlice";
+import { IMAGE_BASE_URL } from "../utils/constants";
 
 export const Tvseries = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -57,8 +58,7 @@ export const Tvseries = () => {
           })
         : searchTvserieResults.results.length > 1 &&
           searchTvserieResults.results.map((movie: any) => {
-            const image =
-              "https://image.tmdb.org/t/p/original/" + movie.backdrop_path;
+            const image = IMAGE_BASE_URL + movie.backdrop_path;
             return (
               <ImageListItem key={movie.id}>
                 <img
