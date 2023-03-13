@@ -14,6 +14,7 @@ import {
 } from "../store/apis/tvseriesApi";
 import { searchTvserie } from "../store/apis/tvserieSlice";
 import { IMAGE_BASE_URL } from "../utils/constants";
+import { Title } from "../components/Title";
 
 export const Tvseries = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -77,9 +78,7 @@ export const Tvseries = () => {
 
   return (
     <>
-      <Typography variant="h1" gutterBottom>
-        TV Series
-      </Typography>
+      <Title text="Tv series" />
       <SearchBar
         handleFilter={handleFilter}
         clearInput={clearInput}

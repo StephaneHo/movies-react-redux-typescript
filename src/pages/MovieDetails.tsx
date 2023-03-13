@@ -1,6 +1,7 @@
 import { Skeleton } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { ErrorMessage } from "../components/Error";
+import { Title } from "../components/Title";
 import { useGetMovieDetailsQuery } from "../store/apis/moviesApi";
 import { IMAGE_BASE_URL } from "../utils/constants";
 
@@ -19,7 +20,7 @@ export const MovieDetails = () => {
     const image = IMAGE_BASE_URL + data.backdrop_path;
     content = (
       <>
-        <h1>{data.title}</h1>
+        <Title text={data.title} />
         <h2>{data.tagline}</h2>
         <p>{data.overview}</p>
         <img

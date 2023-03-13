@@ -12,6 +12,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { Typography } from "@mui/material";
 import { SearchBar } from "../components/SearchBar";
 import { IMAGE_BASE_URL } from "../utils/constants";
+import { Title } from "../components/Title";
 
 export const Movies = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -76,9 +77,7 @@ export const Movies = () => {
 
   return (
     <>
-      <Typography variant="h1" gutterBottom>
-        Movies
-      </Typography>
+      <Title text="Movies" />
       <SearchBar
         handleFilter={handleFilter}
         clearInput={clearInput}
