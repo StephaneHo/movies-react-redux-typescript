@@ -56,17 +56,17 @@ export const Tvseries = () => {
             return <div>{movie.title}</div>;
           })
         : searchTvserieResults.results.length > 1 &&
-          searchTvserieResults.results.map((movie: any) => {
-            const image = IMAGE_BASE_URL + movie.backdrop_path;
+          searchTvserieResults.results.map((tvserie: any) => {
+            const image = IMAGE_BASE_URL + tvserie.backdrop_path;
             return (
-              <ImageListItem key={movie.id}>
+              <ImageListItem key={tvserie.id}>
                 <img
                   src={`${image}?w=100&fit=crop&auto=format`}
                   srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-                  alt={movie.title}
+                  alt={tvserie.name}
                   loading="lazy"
                 />
-                <ImageListItemBar title={movie.title} position="below" />
+                <ImageListItemBar title={tvserie.name} position="below" />
               </ImageListItem>
             );
           });

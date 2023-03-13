@@ -11,6 +11,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { Typography } from "@mui/material";
 import { SearchBar } from "../components/SearchBar";
+import { IMAGE_BASE_URL } from "../utils/constants";
 
 export const Movies = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -54,8 +55,7 @@ export const Movies = () => {
           })
         : searchMovieResults.results.length > 1 &&
           searchMovieResults.results.map((movie: any) => {
-            const image =
-              "https://image.tmdb.org/t/p/original/" + movie.backdrop_path;
+            const image = IMAGE_BASE_URL + movie.backdrop_path;
             const id = movie.id;
             return (
               <Link to={`/${id}`}>
