@@ -2,10 +2,10 @@ import { MdClose } from "react-icons/md";
 import { Wrapper } from "./styles";
 
 interface Props {
-  handleFilter: any;
-  clearInput: any;
-  wordEntered: any;
-  inputRef: any;
+  handleFilter: (arg: React.ChangeEvent<HTMLInputElement>) => void;
+  clearInput: () => void;
+  wordEntered: string;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
 const SearchBar = ({
