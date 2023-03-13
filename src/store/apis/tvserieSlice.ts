@@ -1,29 +1,29 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 
-export interface MovieSearch {
-  movieSearch: string;
+export interface TvserieSearch {
+  tvserieSearch: string;
 }
 
 const initialState = {
-  movieSearch: "",
+  tvserieSearch: "",
 };
 
-export const movieSlice = createSlice({
-  name: "movie",
+export const tvserieSlice = createSlice({
+  name: "tvserie",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    searchMovie: (state, action) => {
+    searchTvserie: (state, action) => {
       // the movie title we are trying to search
       console.log("searchMovie payload", action.payload);
-      state.movieSearch = action.payload;
+      state.tvserieSearch = action.payload;
     },
-    clearSearchMovie: (state) => {
-      state.movieSearch = "";
+    clearSearchTvserie: (state) => {
+      state.tvserieSearch = "";
     },
   },
 });
 
-export default movieSlice.reducer;
-export const { searchMovie, clearSearchMovie } = movieSlice.actions;
+export default tvserieSlice.reducer;
+export const { searchTvserie, clearSearchTvserie } = tvserieSlice.actions;

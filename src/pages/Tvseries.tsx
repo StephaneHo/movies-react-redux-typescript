@@ -4,50 +4,45 @@ import { useFetchMoviesQuery } from "../app/store";
 import Skeleton from "../components/Skeleton";
 import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
-import { searchMovie } from "../store/apis/movieSlice";
-import { useSearchMovieByTitleQuery } from "../store/apis/moviesApi";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { Typography } from "@mui/material";
+import {
+  useFetchTvseriesQuery,
+  useSearchTvserieByTitleQuery,
+} from "../store/apis/tvseriesApi";
+import { searchTvserie } from "../store/apis/tvserieSlice";
 
 export const Tvseries = () => {
-  const [inputText, setInputText] = useState("");
   const [wordEntered, setWordEntered] = useState<string>("");
   const dispatch = useDispatch();
-  const { movieSearch } = useSelector((state: any) => state?.movie);
-  console.log("App mv search", movieSearch);
+  const { tvserieSearch } = useSelector((state: any) => state?.tvserie);
 
   const inputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
   window.addEventListener("load", () => inputRef.current?.focus());
-  let inputHandler = (e: any) => {
-    //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
 
   const handleFilter = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>): void => {
     const searchWord: string = target.value.toLowerCase();
     setWordEntered(searchWord);
-    console.log("searchWord", searchWord);
-    dispatch(searchMovie(searchWord));
+    dispatch(searchTvserie(searchWord));
   };
 
   const clearInput = (): void => {
     setWordEntered("");
     inputRef.current?.focus();
-    dispatch(searchMovie(""));
+    dispatch(searchTvserie(""));
   };
 
   const {
-    data: searchMovieResults,
-    isError: movieSearchError,
-    isLoading: movieSearchLoading,
-  } = useSearchMovieByTitleQuery(movieSearch) || {};
-  const { data, isError, isLoading } = useFetchMoviesQuery(1) || {};
+    data: searchTvserieResults,
+    isError: tvserieSearchError,
+    isLoading: tvserieSearchLoading,
+  } = useSearchTvserieByTitleQuery(tvserieSearch) || {};
+  const { data, isError, isLoading } = useFetchTvseriesQuery(1) || {};
   let content;
   if (isLoading) {
     content = <Skeleton />;
@@ -56,12 +51,12 @@ export const Tvseries = () => {
   } else {
     console.log(content);
     content =
-      movieSearch === ""
+      tvserieSearch === ""
         ? data.results.map((movie: any) => {
             return <div>{movie.title}</div>;
           })
-        : searchMovieResults.results.length > 1 &&
-          searchMovieResults.results.map((movie: any) => {
+        : searchTvserieResults.results.length > 1 &&
+          searchTvserieResults.results.map((movie: any) => {
             const image =
               "https://image.tmdb.org/t/p/original/" + movie.backdrop_path;
             return (
