@@ -50,7 +50,6 @@ export const Tvseries = () => {
   } else if (isError) {
     content = <div>Error loading albums.</div>;
   } else {
-    console.log(content);
     content =
       tvserieSearch === ""
         ? data.results.map((movie: any) => {

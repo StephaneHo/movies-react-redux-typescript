@@ -1,4 +1,6 @@
+import { Skeleton } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { ErrorMessage } from "../components/Error";
 import { useGetMovieDetailsQuery } from "../store/apis/moviesApi";
 
 export const MovieDetails = () => {
@@ -7,10 +9,20 @@ export const MovieDetails = () => {
   const { data, isError, isLoading } = useGetMovieDetailsQuery(movieId) || {};
   console.log(data);
 
-  return (
-    <>
-      <h1>Movie Details</h1>
-      {data.overview}
-    </>
-  );
+  let content;
+  if (isLoading) {
+    content = <Skeleton />;
+  } else if (isError) {
+    content = <ErrorMessage message="error loading the details of the movie" />;
+  } else {
+    content = (
+      <>
+        <h1>{data.title}</h1>
+        <h2>{data.tagline}</h2>
+        <p>{data.overview}</p>
+      </>
+    );
+  }
+
+  return <>{content}</>;
 };
