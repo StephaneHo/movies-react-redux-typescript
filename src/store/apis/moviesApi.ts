@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_KEY, BASE_URL } from "../../utils/constants";
 
 interface Movies {
   page: string;
@@ -8,7 +9,7 @@ interface Movies {
 const moviesApi = createApi({
   reducerPath: "movies",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.themoviedb.org/3",
+    baseUrl: BASE_URL,
   }),
   endpoints(builder) {
     return {
@@ -17,7 +18,7 @@ const moviesApi = createApi({
           return {
             url: "discover/movie",
             params: {
-              api_key: "92b418e837b833be308bbfb1fb2aca1e",
+              api_key: API_KEY,
             },
             method: "GET",
           };
@@ -30,7 +31,7 @@ const moviesApi = createApi({
           return {
             url: "/search/movie",
             params: {
-              api_key: "92b418e837b833be308bbfb1fb2aca1e",
+              api_key: API_KEY,
               query: arg,
             },
             method: "GET",
@@ -44,7 +45,7 @@ const moviesApi = createApi({
           return {
             url: `/movie/${arg}`,
             params: {
-              api_key: "92b418e837b833be308bbfb1fb2aca1e",
+              api_key: API_KEY,
             },
             method: "GET",
           };
