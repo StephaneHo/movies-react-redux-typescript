@@ -5,7 +5,7 @@ interface Props {
   handleFilter: (arg: React.ChangeEvent<HTMLInputElement>) => void;
   clearInput: () => void;
   wordEntered: string;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const SearchBar = ({
@@ -18,15 +18,16 @@ const SearchBar = ({
     <Wrapper>
       <div className="searchInputs">
         <input
+          aria-label="search"
           type="text"
-          placeholder="Enter the name of a movie..."
+          placeholder="Enter a name..."
           value={wordEntered}
           onChange={handleFilter}
           ref={inputRef}
         />
         <div className="searchIcon">
           {wordEntered.length !== 0 && (
-            <MdClose id="clearBtn" onClick={clearInput} />
+            <MdClose id="clearBtn" onClick={clearInput} aria-label="clear" />
           )}
         </div>
       </div>
