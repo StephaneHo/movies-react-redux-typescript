@@ -9,7 +9,6 @@ export const MovieDetails = () => {
   const params = useParams();
   const movieId = params.movieId;
   const { data, isError, isLoading } = useGetMovieDetailsQuery(movieId) || {};
-  console.log(data);
 
   let content;
   if (isLoading) {

@@ -7,12 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchMovie } from "./../store/apis/movieSlice";
 import { useSearchMovieByTitleQuery } from "../store/apis/moviesApi";
 import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { Typography } from "@mui/material";
 import { SearchBar } from "../components/SearchBar";
-import { IMAGE_BASE_URL } from "../utils/constants";
 import { Title } from "../components/Title";
+import { Item } from "../components/Item";
 
 export const Movies = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -39,40 +36,27 @@ export const Movies = () => {
 
   const {
     data: searchMovieResults,
-    isError: movieSearchError,
-    isLoading: movieSearchLoading,
+    isError: isMovieSearchError,
+    isLoading: isMovieSearchLoading,
   } = useSearchMovieByTitleQuery(movieSearch) || {};
   const { data, isError, isLoading } = useFetchMoviesQuery(1) || {};
   let content;
-  if (isLoading) {
+  if (isLoading || isMovieSearchLoading) {
     content = <Skeleton />;
-  } else if (isError) {
+  } else if (isError || isMovieSearchError) {
     content = <div>Error loading albums.</div>;
   } else {
-    content =
-      movieSearch === ""
-        ? data.results.map((movie: any) => {
-            return <div>{movie.title}</div>;
-          })
-        : searchMovieResults.results.length > 1 &&
-          searchMovieResults.results.map((movie: any) => {
-            const image = IMAGE_BASE_URL + movie.backdrop_path;
-            const id = movie.id;
-            return (
-              <Link to={`/${id}`}>
-                <ImageListItem key={movie.id}>
-                  <img
-                    src={`${image}?w=100&fit=crop&auto=format`}
-                    srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-                    alt={movie.title}
-                    loading="lazy"
-                  />
+    let results =
+      movieSearch === "" ? data.results : searchMovieResults.results;
 
-                  <ImageListItemBar title={movie.title} position="below" />
-                </ImageListItem>
-              </Link>
-            );
-          });
+    content = results.map((movie: any) => {
+      const id = movie.id;
+      return (
+        <Link to={`/${id}`}>
+          <Item id={id} imagePath={movie.backdrop_path} title={movie.title} />
+        </Link>
+      );
+    });
   }
 
   return (

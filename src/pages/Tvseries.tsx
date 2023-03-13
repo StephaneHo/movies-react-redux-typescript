@@ -15,6 +15,8 @@ import {
 import { searchTvserie } from "../store/apis/tvserieSlice";
 import { IMAGE_BASE_URL } from "../utils/constants";
 import { Title } from "../components/Title";
+import { ErrorMessage } from "../components/Error";
+import { Item } from "../components/Item";
 
 export const Tvseries = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -41,39 +43,31 @@ export const Tvseries = () => {
 
   const {
     data: searchTvserieResults,
-    isError: tvserieSearchError,
-    isLoading: tvserieSearchLoading,
+    isError: isTvserieSearchError,
+    isLoading: isTvserieSearchLoading,
   } = useSearchTvserieByTitleQuery(tvserieSearch) || {};
   const { data, isError, isLoading } = useFetchTvseriesQuery(1) || {};
   let content;
-  if (isLoading) {
+  if (isLoading || isTvserieSearchLoading) {
     content = <Skeleton />;
-  } else if (isError) {
-    content = <div>Error loading albums.</div>;
+  } else if (isError || isTvserieSearchError) {
+    content = <ErrorMessage message="error loading the tv series" />;
   } else {
-    content =
-      tvserieSearch === ""
-        ? data.results.map((movie: any) => {
-            return <div>{movie.title}</div>;
-          })
-        : searchTvserieResults.results.length > 1 &&
-          searchTvserieResults.results.map((tvserie: any) => {
-            const image = IMAGE_BASE_URL + tvserie.backdrop_path;
-            const id = tvserie.id;
-            return (
-              <Link to={`/tvseries/${id}`}>
-                <ImageListItem key={tvserie.id}>
-                  <img
-                    src={`${image}?w=100&fit=crop&auto=format`}
-                    srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-                    alt={tvserie.name}
-                    loading="lazy"
-                  />
-                  <ImageListItemBar title={tvserie.name} position="below" />
-                </ImageListItem>
-              </Link>
-            );
-          });
+    let results =
+      tvserieSearch === "" ? data.results : searchTvserieResults.results;
+
+    content = results.map((tvserie: any) => {
+      const id = tvserie.id;
+      return (
+        <Link to={`/tvseries/${id}`}>
+          <Item
+            id={id}
+            imagePath={tvserie.backdrop_path}
+            title={tvserie.name}
+          />
+        </Link>
+      );
+    });
   }
 
   return (
