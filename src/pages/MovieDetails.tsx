@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetMovieDetailsQuery } from "../store/apis/movies-api";
+import { useGetMovieDetailsQuery } from "../store/apis/moviesApi";
 
 export const MovieDetails = () => {
   const params = useParams();

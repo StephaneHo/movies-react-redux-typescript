@@ -1,16 +1,16 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { moviesApi } from '../store/apis/movies-api';
-import movieSlice from '../store/apis/movieSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { moviesApi } from "../store/apis/moviesApi";
+import movieSlice from "../store/apis/movieSlice";
 
 export const store = configureStore({
   reducer: {
     [moviesApi.reducerPath]: moviesApi.reducer,
-    movie: movieSlice
+    movie: movieSlice,
   },
-  middleware: (getDefaultMiddleware) =>{
+  middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(moviesApi.middleware);
-  } 
+  },
 });
 
 setupListeners(store.dispatch);
@@ -23,7 +23,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
-export { useFetchMoviesQuery} from '../store/apis/movies-api';
-
-
-
+export { useFetchMoviesQuery } from "../store/apis/moviesApi";

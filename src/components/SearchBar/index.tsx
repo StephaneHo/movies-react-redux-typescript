@@ -1,10 +1,5 @@
-import { useState, useRef } from "react";
-//! Icons
 import { MdClose } from "react-icons/md";
-//! Types
-import type { DataType } from "./utils";
-//! Styles
-import { Wrapper, DataResult } from "./SearchBar.styles";
+import { Wrapper } from "./styles";
 
 interface Props {
   handleFilter: any;

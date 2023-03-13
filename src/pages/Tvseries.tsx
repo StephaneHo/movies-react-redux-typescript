@@ -5,7 +5,7 @@ import Skeleton from "../components/Skeleton";
 import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovie } from "../store/apis/movieSlice";
-import { useSearchMovieByTitleQuery } from "../store/apis/movies-api";
+import { useSearchMovieByTitleQuery } from "../store/apis/moviesApi";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
