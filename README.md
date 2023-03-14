@@ -1,6 +1,8 @@
-# Getting Started with the Movies && TV Series gApp
+# Getting Started with the Movies && TV Series App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+This App displays a list of movies and TV series.
+You can also search by name a movie or a TV serie you are interested in.
+By clicking on an image of a movie or TV serie, you can access to more details.
 
 ## Available Scripts
 
@@ -33,3 +35,7 @@ You can modify the rules in the .eslintrc if you wish.
 
 Currently, the rules are : no console.log and no unused imports.
 If you want to remove all unused imports, run : npx eslint <project-directory> --fix
+
+### `Note`
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
