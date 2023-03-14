@@ -79,7 +79,7 @@ export const Movies = () => {
 
   return (
     <>
-      <Title text="Checkout our movies" />
+      <Title text="Movies" />
       <SearchBar
         handleFilter={handleFilter}
         clearInput={clearInput}

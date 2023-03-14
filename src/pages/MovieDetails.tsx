@@ -4,6 +4,7 @@ import { ErrorMessage } from "../components/ErrorMessage";
 import { Title } from "../components/Title";
 import { useGetMovieDetailsQuery } from "../store/apis/moviesApi";
 import { IMAGE_BASE_URL } from "../utils/constants";
+import classes from "./style/styles.module.css";
 
 export const MovieDetails = () => {
   const params = useParams();
@@ -22,12 +23,13 @@ export const MovieDetails = () => {
         <>
           <Title text={data.title} />
           <h2>{data.tagline}</h2>
-          <p>{data.overview}</p>
+          <div className={classes.overview}>{data.overview}</div>
           <img
-            src={`${image}?w=100&fit=crop&auto=format`}
+            src={`${image}?w=100&fit=crop`}
             srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
             alt={data.title}
             loading="lazy"
+            width={1000}
           />
         </>
       );

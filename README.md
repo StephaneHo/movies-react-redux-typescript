@@ -2,7 +2,7 @@
 
 This App displays a list of movies and TV series.
 You can also search by name a movie or a TV serie you are interested in.
-By clicking on an image of a movie or TV serie, you can access to more details.i
+By clicking on an image or a name of a movie or TV serie, you can access to more details.
 
 ## Available Scripts
 
