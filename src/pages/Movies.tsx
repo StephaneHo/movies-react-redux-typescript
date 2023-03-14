@@ -41,16 +41,13 @@ export const Movies = () => {
     isLoading: isMovieSearchLoading,
   } = useSearchMovieByTitleQuery(movieSearch) || {};
   const { data, isError, isLoading } = useFetchMoviesQuery(1) || {};
-  console.log("first data", data);
-  console.log("isError", isError);
-  console.log("isLoading", isLoading);
   let content;
   if (isLoading || isMovieSearchLoading) {
     content = <Skeleton />;
   } else if (isError || isMovieSearchError) {
     content = <ErrorMessage message="error loading the movies" />;
   } else {
-    let results =
+    const results =
       movieSearch === "" ? data.results : searchMovieResults.results;
 
     content = results.map((movie: any) => {

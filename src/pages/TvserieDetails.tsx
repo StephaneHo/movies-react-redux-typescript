@@ -10,7 +10,6 @@ export const TvserieDetails = () => {
   const params = useParams();
   const movieId = params.tvserieId;
   const { data, isError, isLoading } = useGetTvserieDetailsQuery(movieId) || {};
-  console.log(data);
 
   let content;
   if (isLoading) {

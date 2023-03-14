@@ -16,7 +16,6 @@ export const movieSlice = createSlice({
   reducers: {
     searchMovie: (state, action) => {
       // the movie title we are trying to search
-      console.log("searchMovie payload", action.payload);
       state.movieSearch = action.payload;
     },
     clearSearchMovie: (state) => {

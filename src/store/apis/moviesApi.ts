@@ -26,8 +26,6 @@ const moviesApi = createApi({
       }),
       searchMovieByTitle: builder.query<any, any>({
         query: (arg) => {
-          const { searchText } = arg;
-          console.log("API searchText", arg);
           return {
             url: "/search/movie",
             params: {
@@ -40,8 +38,6 @@ const moviesApi = createApi({
       }),
       getMovieDetails: builder.query<any, any>({
         query: (arg) => {
-          const { searchText } = arg;
-          console.log("API searchText", arg);
           return {
             url: `/movie/${arg}`,
             params: {

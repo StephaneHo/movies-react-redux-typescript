@@ -14,7 +14,7 @@ const tvseriesApi = createApi({
   endpoints(builder) {
     return {
       fetchTvseries: builder.query<any, any>({
-        query: (arg) => {
+        query: (_) => {
           return {
             url: "discover/tv",
             params: {
@@ -26,8 +26,6 @@ const tvseriesApi = createApi({
       }),
       searchTvserieByTitle: builder.query<any, any>({
         query: (arg) => {
-          const { searchText } = arg;
-          console.log("API searchText", arg);
           return {
             url: "/search/tv",
             params: {
@@ -40,8 +38,6 @@ const tvseriesApi = createApi({
       }),
       getTvserieDetails: builder.query<any, any>({
         query: (arg) => {
-          const { searchText } = arg;
-          console.log("API searchText", arg);
           return {
             url: `/tv/${arg}`,
             params: {

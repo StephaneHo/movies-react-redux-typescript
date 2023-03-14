@@ -1,6 +1,6 @@
 import styled, { StyledComponent } from "styled-components";
 
-export const Wrapper: StyledComponent<"div", any, {}, never> = styled.div`
+export const Wrapper: StyledComponent<"div", any, any, never> = styled.div`
   .searchInputs {
     display: flex;
     margin-top: 15rem;

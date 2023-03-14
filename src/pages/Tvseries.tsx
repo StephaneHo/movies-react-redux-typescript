@@ -53,7 +53,7 @@ export const Tvseries = () => {
   } else if (isError || isTvserieSearchError) {
     content = <ErrorMessage message="error loading the tv series" />;
   } else {
-    let results =
+    const results =
       tvserieSearch === "" ? data.results : searchTvserieResults.results;
 
     content = results.map((tvserie: any) => {
