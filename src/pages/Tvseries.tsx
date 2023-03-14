@@ -59,11 +59,12 @@ export const Tvseries = () => {
     content = results.map((tvserie: any) => {
       const id = tvserie.id;
       return (
-        <Link to={`/tvseries/${id}`}>
+        <Link to={`/tvseries/${id}`} key={id}>
           <Item
             id={id}
             imagePath={tvserie.backdrop_path}
             title={tvserie.name}
+            aria-label={tvserie.name}
           />
         </Link>
       );
@@ -72,7 +73,7 @@ export const Tvseries = () => {
 
   return (
     <>
-      <Title text="Tv series" />
+      <Title text="TV Series" />
       <SearchBar
         handleFilter={handleFilter}
         clearInput={clearInput}

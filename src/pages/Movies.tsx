@@ -41,6 +41,9 @@ export const Movies = () => {
     isLoading: isMovieSearchLoading,
   } = useSearchMovieByTitleQuery(movieSearch) || {};
   const { data, isError, isLoading } = useFetchMoviesQuery(1) || {};
+  console.log("first data", data);
+  console.log("isError", isError);
+  console.log("isLoading", isLoading);
   let content;
   if (isLoading || isMovieSearchLoading) {
     content = <Skeleton />;
@@ -53,8 +56,13 @@ export const Movies = () => {
     content = results.map((movie: any) => {
       const id = movie.id;
       return (
-        <Link to={`/${id}`}>
-          <Item id={id} imagePath={movie.backdrop_path} title={movie.title} />
+        <Link to={`/${id}`} key={id}>
+          <Item
+            id={id}
+            imagePath={movie.backdrop_path}
+            title={movie.title}
+            aria-label={movie.title}
+          />
         </Link>
       );
     });
@@ -62,13 +70,14 @@ export const Movies = () => {
 
   return (
     <>
-      <Title text="Movies" />
+      <Title text="Checkout our movies" />
       <SearchBar
         handleFilter={handleFilter}
         clearInput={clearInput}
         wordEntered={wordEntered}
         inputRef={inputRef}
       />
+
       <ImageList sx={{ width: 1000, height: 1050 }}>{content}</ImageList>
     </>
   );

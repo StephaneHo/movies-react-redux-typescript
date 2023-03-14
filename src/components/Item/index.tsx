@@ -6,7 +6,7 @@ import { IMAGE_BASE_URL } from "../../utils/constants";
 
 interface Props {
   id: number;
-  imagePath: string;
+  imagePath?: string;
   title: string;
 }
 
