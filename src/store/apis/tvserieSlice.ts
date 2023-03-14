@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface TvserieSearch {
-  tvserieSearch: string;
-}
-
 const initialState = {
   tvserieSearch: "",
 };

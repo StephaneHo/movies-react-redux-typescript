@@ -5,17 +5,21 @@ import { useFetchMoviesQuery } from "./../app/store";
 import Skeleton from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovie } from "./../store/apis/movieSlice";
-import { useSearchMovieByTitleQuery } from "../store/apis/moviesApi";
+import {
+  MovieResult,
+  useSearchMovieByTitleQuery,
+} from "../store/apis/moviesApi";
 import ImageList from "@mui/material/ImageList";
 import { SearchBar } from "../components/SearchBar";
 import { Title } from "../components/Title";
 import { Item } from "../components/Item";
 import { ErrorMessage } from "../components/ErrorMessage";
+import { RootState } from "../app/store";
 
 export const Movies = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
   const dispatch = useDispatch();
-  const { movieSearch } = useSelector((state: any) => state?.movie);
+  const { movieSearch } = useSelector((state: RootState) => state?.movie);
 
   const inputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -40,29 +44,37 @@ export const Movies = () => {
     isError: isMovieSearchError,
     isLoading: isMovieSearchLoading,
   } = useSearchMovieByTitleQuery(movieSearch) || {};
-  const { data, isError, isLoading } = useFetchMoviesQuery(1) || {};
+  const { data, isError, isLoading } = useFetchMoviesQuery() || {};
   let content;
   if (isLoading || isMovieSearchLoading) {
     content = <Skeleton />;
   } else if (isError || isMovieSearchError) {
     content = <ErrorMessage message="error loading the movies" />;
   } else {
-    const results =
-      movieSearch === "" ? data.results : searchMovieResults.results;
+    let results;
+    if (movieSearch === "" && data !== undefined) {
+      results = data.results;
+    } else if (movieSearch !== "" && searchMovieResults !== undefined) {
+      results = searchMovieResults.results;
+    }
 
-    content = results.map((movie: any) => {
-      const id = movie.id;
-      return (
-        <Link to={`/${id}`} key={id}>
-          <Item
-            id={id}
-            imagePath={movie.backdrop_path}
-            title={movie.title}
-            aria-label={movie.title}
-          />
-        </Link>
-      );
-    });
+    if (results !== undefined) {
+      content = results.map((movie: MovieResult) => {
+        const id = movie.id;
+        return (
+          <Link to={`/${id}`} key={id}>
+            <Item
+              id={id}
+              imagePath={movie.backdrop_path}
+              title={movie.title}
+              aria-label={movie.title}
+            />
+          </Link>
+        );
+      });
+    } else {
+      content = <></>;
+    }
   }
 
   return (

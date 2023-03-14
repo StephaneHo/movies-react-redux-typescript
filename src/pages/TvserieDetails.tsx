@@ -7,7 +7,7 @@ import { IMAGE_BASE_URL } from "../utils/constants";
 
 export const TvserieDetails = () => {
   const params = useParams();
-  const movieId = params.tvserieId;
+  const movieId = params.tvserieId || "";
   const { data, isError, isLoading } = useGetTvserieDetailsQuery(movieId) || {};
 
   let content;
@@ -18,20 +18,24 @@ export const TvserieDetails = () => {
       <ErrorMessage message="error loading the details of the tv serie" />
     );
   } else {
-    const image = IMAGE_BASE_URL + data.backdrop_path;
-    content = (
-      <>
-        <Title text={data.name} />
-        <h2>{data.tagline}</h2>
-        <p>{data.overview}</p>
-        <img
-          src={`${image}?w=100&fit=crop&auto=format`}
-          srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
-          alt={data.name}
-          loading="lazy"
-        />
-      </>
-    );
+    if (data !== undefined) {
+      const image = IMAGE_BASE_URL + data.backdrop_path;
+      content = (
+        <>
+          <Title text={data.name} />
+          <h2>{data.tagline}</h2>
+          <p>{data.overview}</p>
+          <img
+            src={`${image}?w=100&fit=crop&auto=format`}
+            srcSet={`${image}?w=100&fit=crop&auto=format&dpr=2 2x`}
+            alt={data.name}
+            loading="lazy"
+          />
+        </>
+      );
+    } else {
+      content = <></>;
+    }
   }
 
   return <>{content}</>;

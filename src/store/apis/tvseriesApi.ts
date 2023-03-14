@@ -2,8 +2,24 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_KEY, BASE_URL } from "../../utils/constants";
 
 interface Tvseries {
-  page: string;
-  result: string;
+  results: TvserieResult[];
+}
+
+interface TvserieDetails {
+  name: string;
+  tagline: string;
+  backdrop_path: string;
+  overview: string;
+}
+
+interface SearchTvserie {
+  results: TvserieResult[];
+}
+
+export interface TvserieResult {
+  id: string;
+  backdrop_path: string;
+  name: string;
 }
 
 const tvseriesApi = createApi({
@@ -13,8 +29,8 @@ const tvseriesApi = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchTvseries: builder.query<any, any>({
-        query: (_) => {
+      fetchTvseries: builder.query<Tvseries, void>({
+        query: () => {
           return {
             url: "discover/tv",
             params: {
@@ -24,7 +40,7 @@ const tvseriesApi = createApi({
           };
         },
       }),
-      searchTvserieByTitle: builder.query<any, any>({
+      searchTvserieByTitle: builder.query<SearchTvserie, string>({
         query: (arg) => {
           return {
             url: "/search/tv",
@@ -36,7 +52,7 @@ const tvseriesApi = createApi({
           };
         },
       }),
-      getTvserieDetails: builder.query<any, any>({
+      getTvserieDetails: builder.query<TvserieDetails, string>({
         query: (arg) => {
           return {
             url: `/tv/${arg}`,

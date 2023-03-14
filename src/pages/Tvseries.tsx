@@ -6,6 +6,7 @@ import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
 import {
+  TvserieResult,
   useFetchTvseriesQuery,
   useSearchTvserieByTitleQuery,
 } from "../store/apis/tvseriesApi";
@@ -13,11 +14,12 @@ import { searchTvserie } from "../store/apis/tvserieSlice";
 import { Title } from "../components/Title";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Item } from "../components/Item";
+import { RootState } from "../app/store";
 
 export const Tvseries = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
   const dispatch = useDispatch();
-  const { tvserieSearch } = useSelector((state: any) => state?.tvserie);
+  const { tvserieSearch } = useSelector((state: RootState) => state?.tvserie);
 
   const inputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -42,29 +44,37 @@ export const Tvseries = () => {
     isError: isTvserieSearchError,
     isLoading: isTvserieSearchLoading,
   } = useSearchTvserieByTitleQuery(tvserieSearch) || {};
-  const { data, isError, isLoading } = useFetchTvseriesQuery(1) || {};
+  const { data, isError, isLoading } = useFetchTvseriesQuery() || {};
   let content;
   if (isLoading || isTvserieSearchLoading) {
     content = <Skeleton />;
   } else if (isError || isTvserieSearchError) {
     content = <ErrorMessage message="error loading the tv series" />;
   } else {
-    const results =
-      tvserieSearch === "" ? data.results : searchTvserieResults.results;
+    let results;
+    if (tvserieSearch === "" && data !== undefined) {
+      results = data.results;
+    } else if (tvserieSearch !== "" && searchTvserieResults !== undefined) {
+      results = searchTvserieResults.results;
+    }
 
-    content = results.map((tvserie: any) => {
-      const id = tvserie.id;
-      return (
-        <Link to={`/tvseries/${id}`} key={id}>
-          <Item
-            id={id}
-            imagePath={tvserie.backdrop_path}
-            title={tvserie.name}
-            aria-label={tvserie.name}
-          />
-        </Link>
-      );
-    });
+    if (results !== undefined) {
+      content = results.map((tvserie: TvserieResult) => {
+        const id = tvserie.id;
+        return (
+          <Link to={`/tvseries/${id}`} key={id}>
+            <Item
+              id={id}
+              imagePath={tvserie.backdrop_path}
+              title={tvserie.name}
+              aria-label={tvserie.name}
+            />
+          </Link>
+        );
+      });
+    } else {
+      content = <></>;
+    }
   }
 
   return (

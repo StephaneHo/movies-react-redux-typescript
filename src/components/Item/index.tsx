@@ -4,7 +4,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { IMAGE_BASE_URL } from "../../utils/constants";
 
 interface Props {
-  id: number;
+  id: string;
   imagePath?: string;
   title: string;
 }
