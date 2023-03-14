@@ -28,3 +28,8 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run lint`
+
+Runs the linter that is configured with the .eslintrc
+You can modify the rules in the .eslintrc if you wish.
