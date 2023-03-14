@@ -12,8 +12,9 @@ export const routesConfig = [
     element: <RootLayout />,
     children: [
       { path: "/", element: <Movies /> },
+      { path: "/movies", element: <Movies /> },
       { path: "/tvseries", element: <Tvseries /> },
-      { path: "/:movieId", element: <MovieDetails /> },
+      { path: "/movies/:movieId", element: <MovieDetails /> },
       { path: "/tvseries/:tvserieId", element: <TvserieDetails /> },
     ],
   },

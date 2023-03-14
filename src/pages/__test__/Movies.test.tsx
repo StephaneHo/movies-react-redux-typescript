@@ -2,8 +2,8 @@ import { render, waitFor, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { Provider } from "react-redux";
-import { Movies } from "./Movies";
-import { store } from "../app/store";
+import { Movies } from "../Movies";
+import { store } from "../../app/store";
 
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";

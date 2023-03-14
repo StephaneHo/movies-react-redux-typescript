@@ -62,7 +62,7 @@ export const Movies = () => {
       content = results.map((movie: MovieResult) => {
         const id = movie.id;
         return (
-          <Link to={`/${id}`} key={id}>
+          <Link to={`/movies/${id}`} key={id}>
             <Item
               id={id}
               imagePath={movie.backdrop_path}

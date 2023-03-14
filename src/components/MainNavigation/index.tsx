@@ -8,7 +8,7 @@ export const MainNavigation = () => {
         <ul className={classes.list}>
           <li>
             <NavLink
-              to="/"
+              to="/movies"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
