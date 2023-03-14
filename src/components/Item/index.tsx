@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { IMAGE_BASE_URL } from "../../utils/constants";

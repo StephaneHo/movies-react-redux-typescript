@@ -2,7 +2,6 @@ import { Skeleton } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Title } from "../components/Title";
-import { useGetMovieDetailsQuery } from "../store/apis/moviesApi";
 import { useGetTvserieDetailsQuery } from "../store/apis/tvseriesApi";
 import { IMAGE_BASE_URL } from "../utils/constants";
 

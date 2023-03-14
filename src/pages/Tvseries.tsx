@@ -5,15 +5,11 @@ import Skeleton from "../components/Skeleton";
 import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { Typography } from "@mui/material";
 import {
   useFetchTvseriesQuery,
   useSearchTvserieByTitleQuery,
 } from "../store/apis/tvseriesApi";
 import { searchTvserie } from "../store/apis/tvserieSlice";
-import { IMAGE_BASE_URL } from "../utils/constants";
 import { Title } from "../components/Title";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Item } from "../components/Item";

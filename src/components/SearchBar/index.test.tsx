@@ -1,5 +1,4 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import { useRef } from "react";
 import { SearchBar } from ".";
 
 test("renders learn react link", () => {

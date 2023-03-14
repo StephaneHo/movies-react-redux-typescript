@@ -1,21 +1,14 @@
-import { AnyAction, configureStore } from "@reduxjs/toolkit";
-import { render, renderHook, waitFor, screen } from "@testing-library/react";
+import { render, waitFor, screen } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { Provider, useDispatch } from "react-redux";
-import { searchMovie } from "../store/apis/movieSlice";
+import { Provider } from "react-redux";
 import { Movies } from "./Movies";
 import { store } from "../app/store";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  createMemoryRouter,
-} from "react-router-dom";
-import { routesConfig } from "../App";
-import userEvent from "@testing-library/user-event";
+
+
 import React from "react";
 import "@testing-library/jest-dom";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 interface LoginBody {
   username: string;
