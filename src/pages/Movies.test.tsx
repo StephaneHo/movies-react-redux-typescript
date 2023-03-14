@@ -5,8 +5,6 @@ import { Provider } from "react-redux";
 import { Movies } from "./Movies";
 import { store } from "../app/store";
 
-
-import React from "react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 
