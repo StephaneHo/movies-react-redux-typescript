@@ -5,3 +5,9 @@
   display: flex;
   justify-content: justify;
 }
+
+.images {
+  max-width: 80rem;
+  margin: auto;
+  padding: 2rem;
+}

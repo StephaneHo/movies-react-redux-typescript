@@ -5,6 +5,7 @@ interface Props {
   clearInput: () => void;
   wordEntered: string;
   inputRef?: React.RefObject<HTMLInputElement>;
+  typeOfSearch?: "movie" | "tv serie";
 }
 
 const SearchBar = ({
@@ -12,13 +13,14 @@ const SearchBar = ({
   clearInput,
   wordEntered,
   inputRef,
+  typeOfSearch,
 }: Props) => {
   return (
     <div className={classes.searchInputs}>
       <input
         aria-label="search"
         type="text"
-        placeholder="Enter a name..."
+        placeholder={`Enter the name of a ${typeOfSearch}...`}
         value={wordEntered}
         onChange={handleFilter}
         ref={inputRef}

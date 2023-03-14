@@ -15,6 +15,7 @@ import { Title } from "../components/Title";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Item } from "../components/Item";
 import { RootState } from "../app/store";
+import classes from "./style/styles.module.css";
 
 export const Tvseries = () => {
   const [wordEntered, setWordEntered] = useState<string>("");
@@ -80,13 +81,16 @@ export const Tvseries = () => {
   return (
     <>
       <Title text="TV Series" />
-      <SearchBar
-        handleFilter={handleFilter}
-        clearInput={clearInput}
-        wordEntered={wordEntered}
-        inputRef={inputRef}
-      />
-      <ImageList sx={{ width: 1000, height: 1050 }}>{content}</ImageList>
+      <div className={classes.images}>
+        <SearchBar
+          handleFilter={handleFilter}
+          clearInput={clearInput}
+          wordEntered={wordEntered}
+          inputRef={inputRef}
+          typeOfSearch="tv serie"
+        />
+        <ImageList>{content}</ImageList>
+      </div>
     </>
   );
 };
