@@ -6,7 +6,7 @@ import Skeleton from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMovie } from "./../store/apis/movieSlice";
 import {
-  MovieResult,
+  MovieResultType,
   useSearchMovieByTitleQuery,
 } from "../store/apis/moviesApi";
 import ImageList from "@mui/material/ImageList";
@@ -60,7 +60,7 @@ export const Movies = () => {
     }
 
     if (results !== undefined) {
-      content = results.map((movie: MovieResult) => {
+      content = results.map((movie: MovieResultType) => {
         const id = movie.id;
         return (
           <Link to={`/movies/${id}`} key={id}>

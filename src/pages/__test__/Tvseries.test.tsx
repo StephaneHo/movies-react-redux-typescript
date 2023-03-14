@@ -8,15 +8,14 @@ import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Tvseries } from "../Tvseries";
 
-interface LoginBody {
-  username: string;
+interface Body {
+  id: string;
 }
-interface LoginResponse {
-  username: string;
-  firstName: string;
+interface Response {
+  results: string;
 }
 const server = setupServer(
-  rest.get<LoginBody, LoginResponse>(
+  rest.get<Body, Response>(
     "https://api.themoviedb.org/3/discover/tv",
     (req, res, ctx) => {
       return res(
@@ -26,7 +25,7 @@ const server = setupServer(
       );
     }
   ),
-  rest.get<LoginBody, LoginResponse>(
+  rest.get<Body, Response>(
     "https://api.themoviedb.org/3/search/tv",
     (req, res, ctx) => {
       return res(

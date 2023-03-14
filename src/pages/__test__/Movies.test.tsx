@@ -8,15 +8,15 @@ import { store } from "../../app/store";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 
-interface LoginBody {
-  username: string;
+interface Body {
+  id: string;
 }
-interface LoginResponse {
-  username: string;
-  firstName: string;
+interface Response {
+  results: string;
 }
+
 const server = setupServer(
-  rest.get<LoginBody, LoginResponse>(
+  rest.get<Body, Response>(
     "https://api.themoviedb.org/3/discover/movie",
     (req, res, ctx) => {
       return res(
@@ -26,7 +26,7 @@ const server = setupServer(
       );
     }
   ),
-  rest.get<LoginBody, LoginResponse>(
+  rest.get<Body, Response>(
     "https://api.themoviedb.org/3/search/movie",
     (req, res, ctx) => {
       return res(

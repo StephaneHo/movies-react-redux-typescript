@@ -1,22 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_KEY, BASE_URL } from "../../utils/constants";
 
-interface Movies {
-  results: MovieResult[];
+export interface MoviesType {
+  results: MovieResultType[];
 }
 
-interface MovieDetails {
+export interface MovieDetailsType {
   title: string;
   tagline: string;
   backdrop_path: string;
   overview: string;
 }
 
-interface SearchMovie {
-  results: MovieResult[];
+export interface SearchMovieType {
+  results: MovieResultType[];
 }
 
-export interface MovieResult {
+export interface MovieResultType {
   id: string;
   backdrop_path: string;
   title: string;
@@ -29,7 +29,7 @@ const moviesApi = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchMovies: builder.query<Movies, void>({
+      fetchMovies: builder.query<MoviesType, void>({
         query: () => {
           return {
             url: "discover/movie",
@@ -40,7 +40,7 @@ const moviesApi = createApi({
           };
         },
       }),
-      searchMovieByTitle: builder.query<SearchMovie, string>({
+      searchMovieByTitle: builder.query<SearchMovieType, string>({
         query: (arg) => {
           return {
             url: "/search/movie",
@@ -52,7 +52,7 @@ const moviesApi = createApi({
           };
         },
       }),
-      getMovieDetails: builder.query<MovieDetails, string>({
+      getMovieDetails: builder.query<MovieDetailsType, string>({
         query: (arg) => {
           return {
             url: `/movie/${arg}`,

@@ -6,7 +6,7 @@ import { SearchBar } from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import ImageList from "@mui/material/ImageList";
 import {
-  TvserieResult,
+  TvserieResultType,
   useFetchTvseriesQuery,
   useSearchTvserieByTitleQuery,
 } from "../store/apis/tvseriesApi";
@@ -60,7 +60,7 @@ export const Tvseries = () => {
     }
 
     if (results !== undefined) {
-      content = results.map((tvserie: TvserieResult) => {
+      content = results.map((tvserie: TvserieResultType) => {
         const id = tvserie.id;
         return (
           <Link to={`/tvseries/${id}`} key={id}>
